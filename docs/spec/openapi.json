@@ -1,84 +1,86 @@
 {
-  "openapi": "3.0.3",
-  "info": {
-    "title": "Text Embeddings Inference",
-    "description": "Text Embedding Webserver",
-    "contact": {
-      "name": "Olivier Dehaene"
+  "openapi" : "3.0.3",
+  "info" : {
+    "title" : "Text Embeddings Inference",
+    "description" : "Text Embedding Webserver",
+    "contact" : {
+      "name" : "Olivier Dehaene"
     },
-    "license": {
-      "name": "Apache 2.0",
-      "url": "https://www.apache.org/licenses/LICENSE-2.0"
+    "license" : {
+      "name" : "Apache 2.0",
+      "url" : "https://www.apache.org/licenses/LICENSE-2.0"
     },
-    "version": "1.9.3"
+    "version" : "1.9.3"
   },
-  "paths": {
-    "/decode": {
-      "post": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "Decode input ids",
-        "operationId": "decode",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DecodeRequest"
+  "tags" : [ {
+    "name" : "Text Embeddings Inference",
+    "description" : "Hugging Face Text Embeddings Inference API"
+  } ],
+  "paths" : {
+    "/decode" : {
+      "post" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "Decode input ids",
+        "operationId" : "decode",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/DecodeRequest"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "Decoded ids",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DecodeResponse"
+        "responses" : {
+          "200" : {
+            "description" : "Decoded ids",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/DecodeResponse"
                 }
               }
             }
           },
-          "400": {
-            "description": "Batch is empty",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "400" : {
+            "description" : "Batch is empty",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch is empty",
-                  "error_type": "empty"
+                "example" : {
+                  "error" : "Batch is empty",
+                  "error_type" : "empty"
                 }
               }
             }
           },
-          "413": {
-            "description": "Batch size error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "413" : {
+            "description" : "Batch size error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch size error",
-                  "error_type": "validation"
+                "example" : {
+                  "error" : "Batch size error",
+                  "error_type" : "validation"
                 }
               }
             }
           },
-          "422": {
-            "description": "Tokenization error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "422" : {
+            "description" : "Tokenization error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Tokenization error",
-                  "error_type": "tokenizer"
+                "example" : {
+                  "error" : "Tokenization error",
+                  "error_type" : "tokenizer"
                 }
               }
             }
@@ -86,100 +88,98 @@
         }
       }
     },
-    "/embed": {
-      "post": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "Get Embeddings. Returns a 424 status code if the model is not an embedding model.",
-        "operationId": "embed",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EmbedRequest"
+    "/embed" : {
+      "post" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "Get Embeddings. Returns a 424 status code if the model is not an embedding model.",
+        "operationId" : "embed",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmbedRequest"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "Embeddings",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EmbedResponse"
+        "responses" : {
+          "200" : {
+            "description" : "Embeddings",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmbedResponse"
                 }
               }
             }
           },
-          "400": {
-            "description": "Batch is empty",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "400" : {
+            "description" : "Batch is empty",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch is empty",
-                  "error_type": "empty"
+                "example" : {
+                  "error" : "Batch is empty",
+                  "error_type" : "empty"
                 }
               }
             }
           },
-          "413": {
-            "description": "Batch size error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "413" : {
+            "description" : "Batch size error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch size error",
-                  "error_type": "validation"
+                "example" : {
+                  "error" : "Batch size error",
+                  "error_type" : "validation"
                 }
               }
             }
           },
-          "422": {
-            "description": "Tokenization error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "422" : {
+            "description" : "Tokenization error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Tokenization error",
-                  "error_type": "tokenizer"
+                "example" : {
+                  "error" : "Tokenization error",
+                  "error_type" : "tokenizer"
                 }
               }
             }
           },
-          "424": {
-            "description": "Embedding Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "424" : {
+            "description" : "Embedding Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Inference failed",
-                  "error_type": "backend"
+                "example" : {
+                  "error" : "Inference failed",
+                  "error_type" : "backend"
                 }
               }
             }
           },
-          "429": {
-            "description": "Model is overloaded",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "429" : {
+            "description" : "Model is overloaded",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Model is overloaded",
-                  "error_type": "overloaded"
+                "example" : {
+                  "error" : "Model is overloaded",
+                  "error_type" : "overloaded"
                 }
               }
             }
@@ -187,101 +187,99 @@
         }
       }
     },
-    "/embed_all": {
-      "post": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "Get all Embeddings without Pooling.",
-        "description": "Returns a 424 status code if the model is not an embedding model.",
-        "operationId": "embed_all",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EmbedAllRequest"
+    "/embed_all" : {
+      "post" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "Get all Embeddings without Pooling.",
+        "description" : "Returns a 424 status code if the model is not an embedding model.",
+        "operationId" : "embed_all",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmbedAllRequest"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "Embeddings",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EmbedAllResponse"
+        "responses" : {
+          "200" : {
+            "description" : "Embeddings",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmbedAllResponse"
                 }
               }
             }
           },
-          "400": {
-            "description": "Batch is empty",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "400" : {
+            "description" : "Batch is empty",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch is empty",
-                  "error_type": "empty"
+                "example" : {
+                  "error" : "Batch is empty",
+                  "error_type" : "empty"
                 }
               }
             }
           },
-          "413": {
-            "description": "Batch size error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "413" : {
+            "description" : "Batch size error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch size error",
-                  "error_type": "validation"
+                "example" : {
+                  "error" : "Batch size error",
+                  "error_type" : "validation"
                 }
               }
             }
           },
-          "422": {
-            "description": "Tokenization error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "422" : {
+            "description" : "Tokenization error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Tokenization error",
-                  "error_type": "tokenizer"
+                "example" : {
+                  "error" : "Tokenization error",
+                  "error_type" : "tokenizer"
                 }
               }
             }
           },
-          "424": {
-            "description": "Embedding Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "424" : {
+            "description" : "Embedding Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Inference failed",
-                  "error_type": "backend"
+                "example" : {
+                  "error" : "Inference failed",
+                  "error_type" : "backend"
                 }
               }
             }
           },
-          "429": {
-            "description": "Model is overloaded",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "429" : {
+            "description" : "Model is overloaded",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Model is overloaded",
-                  "error_type": "overloaded"
+                "example" : {
+                  "error" : "Model is overloaded",
+                  "error_type" : "overloaded"
                 }
               }
             }
@@ -289,100 +287,98 @@
         }
       }
     },
-    "/embed_sparse": {
-      "post": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "Get Sparse Embeddings. Returns a 424 status code if the model is not an embedding model with SPLADE pooling.",
-        "operationId": "embed_sparse",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/EmbedSparseRequest"
+    "/embed_sparse" : {
+      "post" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "Get Sparse Embeddings. Returns a 424 status code if the model is not an embedding model with SPLADE pooling.",
+        "operationId" : "embed_sparse",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/EmbedSparseRequest"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "Embeddings",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/EmbedSparseResponse"
+        "responses" : {
+          "200" : {
+            "description" : "Embeddings",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/EmbedSparseResponse"
                 }
               }
             }
           },
-          "400": {
-            "description": "Batch is empty",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "400" : {
+            "description" : "Batch is empty",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch is empty",
-                  "error_type": "empty"
+                "example" : {
+                  "error" : "Batch is empty",
+                  "error_type" : "empty"
                 }
               }
             }
           },
-          "413": {
-            "description": "Batch size error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "413" : {
+            "description" : "Batch size error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch size error",
-                  "error_type": "validation"
+                "example" : {
+                  "error" : "Batch size error",
+                  "error_type" : "validation"
                 }
               }
             }
           },
-          "422": {
-            "description": "Tokenization error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "422" : {
+            "description" : "Tokenization error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Tokenization error",
-                  "error_type": "tokenizer"
+                "example" : {
+                  "error" : "Tokenization error",
+                  "error_type" : "tokenizer"
                 }
               }
             }
           },
-          "424": {
-            "description": "Embedding Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "424" : {
+            "description" : "Embedding Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Inference failed",
-                  "error_type": "backend"
+                "example" : {
+                  "error" : "Inference failed",
+                  "error_type" : "backend"
                 }
               }
             }
           },
-          "429": {
-            "description": "Model is overloaded",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "429" : {
+            "description" : "Model is overloaded",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Model is overloaded",
-                  "error_type": "overloaded"
+                "example" : {
+                  "error" : "Model is overloaded",
+                  "error_type" : "overloaded"
                 }
               }
             }
@@ -390,27 +386,25 @@
         }
       }
     },
-    "/health": {
-      "get": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "Health check method",
-        "operationId": "health",
-        "responses": {
-          "200": {
-            "description": "Everything is working fine"
+    "/health" : {
+      "get" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "Health check method",
+        "operationId" : "health",
+        "responses" : {
+          "200" : {
+            "description" : "Everything is working fine"
           },
-          "503": {
-            "description": "Text embeddings Inference is down",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "503" : {
+            "description" : "Text embeddings Inference is down",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "unhealthy",
-                  "error_type": "unhealthy"
+                "example" : {
+                  "error" : "unhealthy",
+                  "error_type" : "unhealthy"
                 }
               }
             }
@@ -418,20 +412,18 @@
         }
       }
     },
-    "/info": {
-      "get": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "Text Embeddings Inference endpoint info",
-        "operationId": "get_model_info",
-        "responses": {
-          "200": {
-            "description": "Served model info",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Info"
+    "/info" : {
+      "get" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "Text Embeddings Inference endpoint info",
+        "operationId" : "get_model_info",
+        "responses" : {
+          "200" : {
+            "description" : "Served model info",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/Info"
                 }
               }
             }
@@ -439,20 +431,18 @@
         }
       }
     },
-    "/metrics": {
-      "get": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "Prometheus metrics scrape endpoint",
-        "operationId": "metrics",
-        "responses": {
-          "200": {
-            "description": "Prometheus Metrics",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "string"
+    "/metrics" : {
+      "get" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "Prometheus metrics scrape endpoint",
+        "operationId" : "metrics",
+        "responses" : {
+          "200" : {
+            "description" : "Prometheus Metrics",
+            "content" : {
+              "text/plain" : {
+                "schema" : {
+                  "type" : "string"
                 }
               }
             }
@@ -460,100 +450,98 @@
         }
       }
     },
-    "/predict": {
-      "post": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "Get Predictions. Returns a 424 status code if the model is not a Sequence Classification model",
-        "operationId": "predict",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PredictRequest"
+    "/predict" : {
+      "post" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "Get Predictions. Returns a 424 status code if the model is not a Sequence Classification model",
+        "operationId" : "predict",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/PredictRequest"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "Predictions",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PredictResponse"
+        "responses" : {
+          "200" : {
+            "description" : "Predictions",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/PredictResponse"
                 }
               }
             }
           },
-          "400": {
-            "description": "Batch is empty",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "400" : {
+            "description" : "Batch is empty",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch is empty",
-                  "error_type": "empty"
+                "example" : {
+                  "error" : "Batch is empty",
+                  "error_type" : "empty"
                 }
               }
             }
           },
-          "413": {
-            "description": "Batch size error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "413" : {
+            "description" : "Batch size error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch size error",
-                  "error_type": "validation"
+                "example" : {
+                  "error" : "Batch size error",
+                  "error_type" : "validation"
                 }
               }
             }
           },
-          "422": {
-            "description": "Tokenization error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "422" : {
+            "description" : "Tokenization error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Tokenization error",
-                  "error_type": "tokenizer"
+                "example" : {
+                  "error" : "Tokenization error",
+                  "error_type" : "tokenizer"
                 }
               }
             }
           },
-          "424": {
-            "description": "Prediction Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "424" : {
+            "description" : "Prediction Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Inference failed",
-                  "error_type": "backend"
+                "example" : {
+                  "error" : "Inference failed",
+                  "error_type" : "backend"
                 }
               }
             }
           },
-          "429": {
-            "description": "Model is overloaded",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "429" : {
+            "description" : "Model is overloaded",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Model is overloaded",
-                  "error_type": "overloaded"
+                "example" : {
+                  "error" : "Model is overloaded",
+                  "error_type" : "overloaded"
                 }
               }
             }
@@ -561,101 +549,99 @@
         }
       }
     },
-    "/rerank": {
-      "post": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "Get Ranks. Returns a 424 status code if the model is not a Sequence Classification model with",
-        "description": "a single class.",
-        "operationId": "rerank",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/RerankRequest"
+    "/rerank" : {
+      "post" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "Get Ranks. Returns a 424 status code if the model is not a Sequence Classification model with",
+        "description" : "a single class.",
+        "operationId" : "rerank",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/RerankRequest"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "Ranks",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/RerankResponse"
+        "responses" : {
+          "200" : {
+            "description" : "Ranks",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/RerankResponse"
                 }
               }
             }
           },
-          "400": {
-            "description": "Batch is empty",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "400" : {
+            "description" : "Batch is empty",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch is empty",
-                  "error_type": "empty"
+                "example" : {
+                  "error" : "Batch is empty",
+                  "error_type" : "empty"
                 }
               }
             }
           },
-          "413": {
-            "description": "Batch size error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "413" : {
+            "description" : "Batch size error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch size error",
-                  "error_type": "validation"
+                "example" : {
+                  "error" : "Batch size error",
+                  "error_type" : "validation"
                 }
               }
             }
           },
-          "422": {
-            "description": "Tokenization error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "422" : {
+            "description" : "Tokenization error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Tokenization error",
-                  "error_type": "tokenizer"
+                "example" : {
+                  "error" : "Tokenization error",
+                  "error_type" : "tokenizer"
                 }
               }
             }
           },
-          "424": {
-            "description": "Rerank Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "424" : {
+            "description" : "Rerank Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Inference failed",
-                  "error_type": "backend"
+                "example" : {
+                  "error" : "Inference failed",
+                  "error_type" : "backend"
                 }
               }
             }
           },
-          "429": {
-            "description": "Model is overloaded",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "429" : {
+            "description" : "Model is overloaded",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Model is overloaded",
-                  "error_type": "overloaded"
+                "example" : {
+                  "error" : "Model is overloaded",
+                  "error_type" : "overloaded"
                 }
               }
             }
@@ -663,100 +649,98 @@
         }
       }
     },
-    "/similarity": {
-      "post": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "Get Sentence Similarity. Returns a 424 status code if the model is not an embedding model.",
-        "operationId": "similarity",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/SimilarityRequest"
+    "/similarity" : {
+      "post" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "Get Sentence Similarity. Returns a 424 status code if the model is not an embedding model.",
+        "operationId" : "similarity",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/SimilarityRequest"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "Sentence Similarity",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SimilarityResponse"
+        "responses" : {
+          "200" : {
+            "description" : "Sentence Similarity",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/SimilarityResponse"
                 }
               }
             }
           },
-          "400": {
-            "description": "Batch is empty",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "400" : {
+            "description" : "Batch is empty",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch is empty",
-                  "error_type": "empty"
+                "example" : {
+                  "error" : "Batch is empty",
+                  "error_type" : "empty"
                 }
               }
             }
           },
-          "413": {
-            "description": "Batch size error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "413" : {
+            "description" : "Batch size error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch size error",
-                  "error_type": "validation"
+                "example" : {
+                  "error" : "Batch size error",
+                  "error_type" : "validation"
                 }
               }
             }
           },
-          "422": {
-            "description": "Tokenization error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "422" : {
+            "description" : "Tokenization error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Tokenization error",
-                  "error_type": "tokenizer"
+                "example" : {
+                  "error" : "Tokenization error",
+                  "error_type" : "tokenizer"
                 }
               }
             }
           },
-          "424": {
-            "description": "Embedding Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "424" : {
+            "description" : "Embedding Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Inference failed",
-                  "error_type": "backend"
+                "example" : {
+                  "error" : "Inference failed",
+                  "error_type" : "backend"
                 }
               }
             }
           },
-          "429": {
-            "description": "Model is overloaded",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "429" : {
+            "description" : "Model is overloaded",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Model is overloaded",
-                  "error_type": "overloaded"
+                "example" : {
+                  "error" : "Model is overloaded",
+                  "error_type" : "overloaded"
                 }
               }
             }
@@ -764,72 +748,70 @@
         }
       }
     },
-    "/tokenize": {
-      "post": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "Tokenize inputs",
-        "operationId": "tokenize",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/TokenizeRequest"
+    "/tokenize" : {
+      "post" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "Tokenize inputs",
+        "operationId" : "tokenize",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/TokenizeRequest"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "Tokenized ids",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/TokenizeResponse"
+        "responses" : {
+          "200" : {
+            "description" : "Tokenized ids",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/TokenizeResponse"
                 }
               }
             }
           },
-          "400": {
-            "description": "Batch is empty",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "400" : {
+            "description" : "Batch is empty",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch is empty",
-                  "error_type": "empty"
+                "example" : {
+                  "error" : "Batch is empty",
+                  "error_type" : "empty"
                 }
               }
             }
           },
-          "413": {
-            "description": "Batch size error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "413" : {
+            "description" : "Batch size error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Batch size error",
-                  "error_type": "validation"
+                "example" : {
+                  "error" : "Batch size error",
+                  "error_type" : "validation"
                 }
               }
             }
           },
-          "422": {
-            "description": "Tokenization error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
+          "422" : {
+            "description" : "Tokenization error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/ErrorResponse"
                 },
-                "example": {
-                  "error": "Tokenization error",
-                  "error_type": "tokenizer"
+                "example" : {
+                  "error" : "Tokenization error",
+                  "error_type" : "tokenizer"
                 }
               }
             }
@@ -837,100 +819,98 @@
         }
       }
     },
-    "/v1/embeddings": {
-      "post": {
-        "tags": [
-          "Text Embeddings Inference"
-        ],
-        "summary": "OpenAI compatible route. Returns a 424 status code if the model is not an embedding model.",
-        "operationId": "openai_embed",
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/OpenAICompatRequest"
+    "/v1/embeddings" : {
+      "post" : {
+        "tags" : [ "Text Embeddings Inference" ],
+        "summary" : "OpenAI compatible route. Returns a 424 status code if the model is not an embedding model.",
+        "operationId" : "openai_embed",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/OpenAICompatRequest"
               }
             }
           },
-          "required": true
+          "required" : true
         },
-        "responses": {
-          "200": {
-            "description": "Embeddings",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OpenAICompatResponse"
+        "responses" : {
+          "200" : {
+            "description" : "Embeddings",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAICompatResponse"
                 }
               }
             }
           },
-          "400": {
-            "description": "Batch is empty",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OpenAICompatErrorResponse"
+          "400" : {
+            "description" : "Batch is empty",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAICompatErrorResponse"
                 },
-                "example": {
-                  "message": "Batch is empty",
-                  "type": "empty"
+                "example" : {
+                  "message" : "Batch is empty",
+                  "type" : "empty"
                 }
               }
             }
           },
-          "413": {
-            "description": "Batch size error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OpenAICompatErrorResponse"
+          "413" : {
+            "description" : "Batch size error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAICompatErrorResponse"
                 },
-                "example": {
-                  "message": "Batch size error",
-                  "type": "validation"
+                "example" : {
+                  "message" : "Batch size error",
+                  "type" : "validation"
                 }
               }
             }
           },
-          "422": {
-            "description": "Tokenization error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OpenAICompatErrorResponse"
+          "422" : {
+            "description" : "Tokenization error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAICompatErrorResponse"
                 },
-                "example": {
-                  "message": "Tokenization error",
-                  "type": "tokenizer"
+                "example" : {
+                  "message" : "Tokenization error",
+                  "type" : "tokenizer"
                 }
               }
             }
           },
-          "424": {
-            "description": "Embedding Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OpenAICompatErrorResponse"
+          "424" : {
+            "description" : "Embedding Error",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAICompatErrorResponse"
                 },
-                "example": {
-                  "message": "Inference failed",
-                  "type": "backend"
+                "example" : {
+                  "message" : "Inference failed",
+                  "type" : "backend"
                 }
               }
             }
           },
-          "429": {
-            "description": "Model is overloaded",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/OpenAICompatErrorResponse"
+          "429" : {
+            "description" : "Model is overloaded",
+            "content" : {
+              "application/json" : {
+                "schema" : {
+                  "$ref" : "#/components/schemas/OpenAICompatErrorResponse"
                 },
-                "example": {
-                  "message": "Model is overloaded",
-                  "type": "overloaded"
+                "example" : {
+                  "message" : "Model is overloaded",
+                  "type" : "overloaded"
                 }
               }
             }
@@ -939,974 +919,891 @@
       }
     }
   },
-  "components": {
-    "schemas": {
-      "ClassifierModel": {
-        "type": "object",
-        "required": [
-          "id2label",
-          "label2id"
-        ],
-        "properties": {
-          "id2label": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "string"
+  "components" : {
+    "schemas" : {
+      "OpenAICompatResponse" : {
+        "required" : [ "data", "model", "object", "usage" ],
+        "type" : "object",
+        "properties" : {
+          "data" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "#/components/schemas/OpenAICompatEmbedding"
+            }
+          },
+          "usage" : {
+            "$ref" : "#/components/schemas/OpenAICompatUsage"
+          },
+          "model" : {
+            "type" : "string",
+            "example" : "thenlper/gte-base"
+          },
+          "object" : {
+            "type" : "string",
+            "example" : "list"
+          }
+        }
+      },
+      "EmbeddingModel" : {
+        "required" : [ "pooling" ],
+        "type" : "object",
+        "properties" : {
+          "pooling" : {
+            "type" : "string",
+            "example" : "cls"
+          }
+        }
+      },
+      "SimilarityResponse" : {
+        "type" : "array",
+        "example" : [ 0.0, 1.0, 0.5 ],
+        "items" : {
+          "type" : "number",
+          "format" : "float"
+        }
+      },
+      "TokenizeInput" : {
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/TokenizeInputOneOf1"
+        }, {
+          "$ref" : "#/components/schemas/TokenizeInputTokenizeInputOneOf12"
+        } ]
+      },
+      "PredictInput" : {
+        "description" : "Model input. Can be either a single string, a pair of strings or a batch of mixed single and pairs of strings",
+        "example" : "What is Deep Learning?",
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/PredictInputOneOf1"
+        }, {
+          "$ref" : "#/components/schemas/PredictInputPredictInputOneOf12"
+        }, {
+          "$ref" : "#/components/schemas/PredictInputPredictInputPredictInputOneOf123"
+        } ]
+      },
+      "TruncationDirection" : {
+        "type" : "string",
+        "enum" : [ "Left", "Right" ]
+      },
+      "EncodingFormat" : {
+        "type" : "string",
+        "enum" : [ "float", "base64" ]
+      },
+      "Input" : {
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/InputType"
+        }, {
+          "$ref" : "#/components/schemas/InputOneOf2"
+        } ]
+      },
+      "PredictInputPredictInputOneOf12" : {
+        "maxItems" : 2,
+        "minItems" : 2,
+        "type" : "array",
+        "description" : "A pair of strings",
+        "items" : {
+          "type" : "string"
+        }
+      },
+      "PredictInputPredictInputPredictInputOneOf123" : {
+        "type" : "array",
+        "description" : "A batch",
+        "items" : {
+          "oneOf" : [ {
+            "maxItems" : 1,
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "A single string",
+            "items" : {
+              "type" : "string"
+            }
+          }, {
+            "maxItems" : 2,
+            "minItems" : 2,
+            "type" : "array",
+            "description" : "A pair of strings",
+            "items" : {
+              "type" : "string"
+            }
+          } ]
+        }
+      },
+      "ModelTypeModelTypeOneOf12" : {
+        "required" : [ "embedding" ],
+        "type" : "object",
+        "properties" : {
+          "embedding" : {
+            "$ref" : "#/components/schemas/EmbeddingModel"
+          }
+        }
+      },
+      "TokenizeResponse" : {
+        "type" : "array",
+        "example" : [ [ {
+          "id" : 0,
+          "special" : false,
+          "start" : 0,
+          "stop" : 2,
+          "text" : "test"
+        } ] ],
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/components/schemas/SimpleToken"
+          }
+        }
+      },
+      "Prediction" : {
+        "required" : [ "label", "score" ],
+        "type" : "object",
+        "properties" : {
+          "score" : {
+            "type" : "number",
+            "format" : "float",
+            "example" : 0.5
+          },
+          "label" : {
+            "type" : "string",
+            "example" : "admiration"
+          }
+        }
+      },
+      "PredictResponse" : {
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/PredictResponseOneOf1"
+        }, {
+          "$ref" : "#/components/schemas/PredictResponsePredictResponseOneOf12"
+        } ]
+      },
+      "OpenAICompatEmbedding" : {
+        "required" : [ "embedding", "index", "object" ],
+        "type" : "object",
+        "properties" : {
+          "index" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "example" : 0
+          },
+          "embedding" : {
+            "$ref" : "#/components/schemas/Embedding"
+          },
+          "object" : {
+            "type" : "string",
+            "example" : "embedding"
+          }
+        }
+      },
+      "PredictRequest" : {
+        "required" : [ "inputs" ],
+        "type" : "object",
+        "properties" : {
+          "truncate" : {
+            "type" : "boolean",
+            "nullable" : true,
+            "example" : false,
+            "default" : false
+          },
+          "inputs" : {
+            "$ref" : "#/components/schemas/PredictInput"
+          },
+          "raw_scores" : {
+            "type" : "boolean",
+            "example" : false,
+            "default" : false,
+            "x-ballerina-name" : "rawScores"
+          },
+          "truncation_direction" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TruncationDirection"
+            } ],
+            "default" : "right",
+            "x-ballerina-name" : "truncationDirection"
+          }
+        }
+      },
+      "InputType" : {
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/InputTypeOneOf1"
+        }, {
+          "$ref" : "#/components/schemas/InputTypeInputTypeOneOf12"
+        } ]
+      },
+      "SparseValue" : {
+        "required" : [ "index", "value" ],
+        "type" : "object",
+        "properties" : {
+          "index" : {
+            "minimum" : 0,
+            "type" : "integer"
+          },
+          "value" : {
+            "type" : "number",
+            "format" : "float"
+          }
+        }
+      },
+      "InputIdsInputIdsOneOf12" : {
+        "type" : "array",
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "format" : "int32"
+          }
+        }
+      },
+      "EmbedAllResponse" : {
+        "type" : "array",
+        "example" : [ [ [ 0.0, 1.0, 2.0 ] ] ],
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "type" : "number",
+              "format" : "float"
+            }
+          }
+        }
+      },
+      "OpenAICompatUsage" : {
+        "required" : [ "prompt_tokens", "total_tokens" ],
+        "type" : "object",
+        "properties" : {
+          "prompt_tokens" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "example" : 512,
+            "x-ballerina-name" : "promptTokens"
+          },
+          "total_tokens" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "example" : 512,
+            "x-ballerina-name" : "totalTokens"
+          }
+        }
+      },
+      "InputIdsOneOf1" : {
+        "type" : "array",
+        "items" : {
+          "minimum" : 0,
+          "type" : "integer",
+          "format" : "int32"
+        }
+      },
+      "TokenizeInputTokenizeInputOneOf12" : {
+        "type" : "array",
+        "items" : {
+          "type" : "string"
+        }
+      },
+      "InputOneOf2" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/InputType"
+        }
+      },
+      "InputTypeOneOf1" : {
+        "type" : "string"
+      },
+      "InputIds" : {
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/InputIdsOneOf1"
+        }, {
+          "$ref" : "#/components/schemas/InputIdsInputIdsOneOf12"
+        } ]
+      },
+      "Embedding" : {
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/EmbeddingOneOf1"
+        }, {
+          "$ref" : "#/components/schemas/EmbeddingEmbeddingOneOf12"
+        } ]
+      },
+      "EmbeddingEmbeddingOneOf12" : {
+        "type" : "string"
+      },
+      "EmbedRequest" : {
+        "required" : [ "inputs" ],
+        "type" : "object",
+        "properties" : {
+          "truncate" : {
+            "type" : "boolean",
+            "nullable" : true,
+            "example" : false,
+            "default" : false
+          },
+          "inputs" : {
+            "$ref" : "#/components/schemas/Input"
+          },
+          "normalize" : {
+            "type" : "boolean",
+            "example" : true,
+            "default" : true
+          },
+          "truncation_direction" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TruncationDirection"
+            } ],
+            "default" : "right",
+            "x-ballerina-name" : "truncationDirection"
+          },
+          "dimensions" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "description" : "The number of dimensions that the output embeddings should have. If not set, the original\nshape of the representation will be returned instead",
+            "nullable" : true
+          },
+          "prompt_name" : {
+            "type" : "string",
+            "description" : "The name of the prompt that should be used by for encoding. If not set, no prompt\nwill be applied.\n\nMust be a key in the `sentence-transformers` configuration `prompts` dictionary.\n\nFor example if ``prompt_name`` is \"query\" and the ``prompts`` is {\"query\": \"query: \", ...},\nthen the sentence \"What is the capital of France?\" will be encoded as\n\"query: What is the capital of France?\" because the prompt text will be prepended before\nany text to encode",
+            "nullable" : true,
+            "example" : "null",
+            "default" : "null",
+            "x-ballerina-name" : "promptName"
+          }
+        }
+      },
+      "EmbedSparseRequest" : {
+        "required" : [ "inputs" ],
+        "type" : "object",
+        "properties" : {
+          "truncate" : {
+            "type" : "boolean",
+            "nullable" : true,
+            "example" : false,
+            "default" : false
+          },
+          "inputs" : {
+            "$ref" : "#/components/schemas/Input"
+          },
+          "truncation_direction" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TruncationDirection"
+            } ],
+            "default" : "right",
+            "x-ballerina-name" : "truncationDirection"
+          },
+          "prompt_name" : {
+            "type" : "string",
+            "description" : "The name of the prompt that should be used by for encoding. If not set, no prompt\nwill be applied.\n\nMust be a key in the `sentence-transformers` configuration `prompts` dictionary.\n\nFor example if ``prompt_name`` is \"query\" and the ``prompts`` is {\"query\": \"query: \", ...},\nthen the sentence \"What is the capital of France?\" will be encoded as\n\"query: What is the capital of France?\" because the prompt text will be prepended before\nany text to encode",
+            "nullable" : true,
+            "example" : "null",
+            "default" : "null",
+            "x-ballerina-name" : "promptName"
+          }
+        }
+      },
+      "InputTypeInputTypeOneOf12" : {
+        "type" : "array",
+        "items" : {
+          "minimum" : 0,
+          "type" : "integer",
+          "format" : "int32"
+        }
+      },
+      "ClassifierModel" : {
+        "required" : [ "id2label", "label2id" ],
+        "type" : "object",
+        "properties" : {
+          "id2label" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "type" : "string"
             },
-            "example": {
-              "0": "LABEL"
+            "example" : {
+              "0" : "LABEL"
             }
           },
-          "label2id": {
-            "type": "object",
-            "additionalProperties": {
-              "type": "integer",
-              "minimum": 0
+          "label2id" : {
+            "type" : "object",
+            "additionalProperties" : {
+              "minimum" : 0,
+              "type" : "integer"
             },
-            "example": {
-              "LABEL": 0
+            "example" : {
+              "LABEL" : 0
             }
           }
         }
       },
-      "DecodeRequest": {
-        "type": "object",
-        "required": [
-          "ids"
-        ],
-        "properties": {
-          "ids": {
-            "$ref": "#/components/schemas/InputIds"
-          },
-          "skip_special_tokens": {
-            "type": "boolean",
-            "default": "true",
-            "example": "true"
-          }
+      "ErrorType" : {
+        "type" : "string",
+        "enum" : [ "Unhealthy", "Backend", "Overloaded", "Validation", "Tokenizer", "Empty" ]
+      },
+      "DecodeResponse" : {
+        "type" : "array",
+        "example" : [ "test" ],
+        "items" : {
+          "type" : "string"
         }
       },
-      "DecodeResponse": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "example": [
-          "test"
-        ]
-      },
-      "EmbedAllRequest": {
-        "type": "object",
-        "required": [
-          "inputs"
-        ],
-        "properties": {
-          "inputs": {
-            "$ref": "#/components/schemas/Input"
-          },
-          "prompt_name": {
-            "type": "string",
-            "description": "The name of the prompt that should be used by for encoding. If not set, no prompt\nwill be applied.\n\nMust be a key in the `sentence-transformers` configuration `prompts` dictionary.\n\nFor example if ``prompt_name`` is \"query\" and the ``prompts`` is {\"query\": \"query: \", ...},\nthen the sentence \"What is the capital of France?\" will be encoded as\n\"query: What is the capital of France?\" because the prompt text will be prepended before\nany text to encode.",
-            "default": "null",
-            "example": "null",
-            "nullable": true
-          },
-          "truncate": {
-            "type": "boolean",
-            "default": "false",
-            "example": "false",
-            "nullable": true
-          },
-          "truncation_direction": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TruncationDirection"
-              }
-            ],
-            "default": "right"
-          }
-        }
-      },
-      "EmbedAllResponse": {
-        "type": "array",
-        "items": {
-          "type": "array",
-          "items": {
-            "type": "array",
-            "items": {
-              "type": "number",
-              "format": "float"
-            }
-          }
-        },
-        "example": [
-          [
-            [
-              0.0,
-              1.0,
-              2.0
-            ]
-          ]
-        ]
-      },
-      "EmbedRequest": {
-        "type": "object",
-        "required": [
-          "inputs"
-        ],
-        "properties": {
-          "dimensions": {
-            "type": "integer",
-            "description": "The number of dimensions that the output embeddings should have. If not set, the original\nshape of the representation will be returned instead.",
-            "default": "null",
-            "example": "null",
-            "nullable": true,
-            "minimum": 0
-          },
-          "inputs": {
-            "$ref": "#/components/schemas/Input"
-          },
-          "normalize": {
-            "type": "boolean",
-            "default": "true",
-            "example": "true"
-          },
-          "prompt_name": {
-            "type": "string",
-            "description": "The name of the prompt that should be used by for encoding. If not set, no prompt\nwill be applied.\n\nMust be a key in the `sentence-transformers` configuration `prompts` dictionary.\n\nFor example if ``prompt_name`` is \"query\" and the ``prompts`` is {\"query\": \"query: \", ...},\nthen the sentence \"What is the capital of France?\" will be encoded as\n\"query: What is the capital of France?\" because the prompt text will be prepended before\nany text to encode.",
-            "default": "null",
-            "example": "null",
-            "nullable": true
-          },
-          "truncate": {
-            "type": "boolean",
-            "default": "false",
-            "example": "false",
-            "nullable": true
-          },
-          "truncation_direction": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TruncationDirection"
-              }
-            ],
-            "default": "right"
-          }
-        }
-      },
-      "EmbedResponse": {
-        "type": "array",
-        "items": {
-          "type": "array",
-          "items": {
-            "type": "number",
-            "format": "float"
-          }
-        },
-        "example": [
-          [
-            0.0,
-            1.0,
-            2.0
-          ]
-        ]
-      },
-      "EmbedSparseRequest": {
-        "type": "object",
-        "required": [
-          "inputs"
-        ],
-        "properties": {
-          "inputs": {
-            "$ref": "#/components/schemas/Input"
-          },
-          "prompt_name": {
-            "type": "string",
-            "description": "The name of the prompt that should be used by for encoding. If not set, no prompt\nwill be applied.\n\nMust be a key in the `sentence-transformers` configuration `prompts` dictionary.\n\nFor example if ``prompt_name`` is \"query\" and the ``prompts`` is {\"query\": \"query: \", ...},\nthen the sentence \"What is the capital of France?\" will be encoded as\n\"query: What is the capital of France?\" because the prompt text will be prepended before\nany text to encode.",
-            "default": "null",
-            "example": "null",
-            "nullable": true
-          },
-          "truncate": {
-            "type": "boolean",
-            "default": "false",
-            "example": "false",
-            "nullable": true
-          },
-          "truncation_direction": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TruncationDirection"
-              }
-            ],
-            "default": "right"
-          }
-        }
-      },
-      "EmbedSparseResponse": {
-        "type": "array",
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/components/schemas/SparseValue"
-          }
-        }
-      },
-      "Embedding": {
-        "oneOf": [
-          {
-            "type": "array",
-            "items": {
-              "type": "number",
-              "format": "float"
+      "RerankRequest" : {
+        "required" : [ "query", "texts" ],
+        "type" : "object",
+        "properties" : {
+          "texts" : {
+            "type" : "array",
+            "example" : [ "Deep Learning is ..." ],
+            "items" : {
+              "type" : "string"
             }
           },
-          {
-            "type": "string"
-          }
-        ]
-      },
-      "EmbeddingModel": {
-        "type": "object",
-        "required": [
-          "pooling"
-        ],
-        "properties": {
-          "pooling": {
-            "type": "string",
-            "example": "cls"
-          }
-        }
-      },
-      "EncodingFormat": {
-        "type": "string",
-        "enum": [
-          "float",
-          "base64"
-        ]
-      },
-      "ErrorResponse": {
-        "type": "object",
-        "required": [
-          "error",
-          "error_type"
-        ],
-        "properties": {
-          "error": {
-            "type": "string"
+          "truncate" : {
+            "type" : "boolean",
+            "nullable" : true,
+            "example" : false,
+            "default" : false
           },
-          "error_type": {
-            "$ref": "#/components/schemas/ErrorType"
+          "return_text" : {
+            "type" : "boolean",
+            "example" : false,
+            "default" : false,
+            "x-ballerina-name" : "returnText"
+          },
+          "query" : {
+            "type" : "string",
+            "example" : "What is Deep Learning?"
+          },
+          "raw_scores" : {
+            "type" : "boolean",
+            "example" : false,
+            "default" : false,
+            "x-ballerina-name" : "rawScores"
+          },
+          "truncation_direction" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TruncationDirection"
+            } ],
+            "default" : "right",
+            "x-ballerina-name" : "truncationDirection"
           }
         }
       },
-      "ErrorType": {
-        "type": "string",
-        "enum": [
-          "Unhealthy",
-          "Backend",
-          "Overloaded",
-          "Validation",
-          "Tokenizer",
-          "Empty"
-        ]
-      },
-      "Info": {
-        "type": "object",
-        "required": [
-          "model_id",
-          "model_dtype",
-          "served_model_name",
-          "model_type",
-          "max_concurrent_requests",
-          "max_input_length",
-          "max_batch_tokens",
-          "max_client_batch_size",
-          "auto_truncate",
-          "tokenization_workers",
-          "version"
-        ],
-        "properties": {
-          "auto_truncate": {
-            "type": "boolean"
+      "TokenizeRequest" : {
+        "required" : [ "inputs" ],
+        "type" : "object",
+        "properties" : {
+          "inputs" : {
+            "$ref" : "#/components/schemas/TokenizeInput"
           },
-          "docker_label": {
-            "type": "string",
-            "example": "null",
-            "nullable": true
+          "add_special_tokens" : {
+            "type" : "boolean",
+            "example" : true,
+            "default" : true,
+            "x-ballerina-name" : "addSpecialTokens"
           },
-          "max_batch_requests": {
-            "type": "integer",
-            "default": "null",
-            "example": "null",
-            "nullable": true,
-            "minimum": 0
-          },
-          "max_batch_tokens": {
-            "type": "integer",
-            "example": "2048",
-            "minimum": 0
-          },
-          "max_client_batch_size": {
-            "type": "integer",
-            "example": "32",
-            "minimum": 0
-          },
-          "max_concurrent_requests": {
-            "type": "integer",
-            "description": "Router Parameters",
-            "example": "128",
-            "minimum": 0
-          },
-          "max_input_length": {
-            "type": "integer",
-            "example": "512",
-            "minimum": 0
-          },
-          "model_dtype": {
-            "type": "string",
-            "example": "float16"
-          },
-          "model_id": {
-            "type": "string",
-            "description": "Model info",
-            "example": "thenlper/gte-base"
-          },
-          "model_sha": {
-            "type": "string",
-            "example": "fca14538aa9956a46526bd1d0d11d69e19b5a101",
-            "nullable": true
-          },
-          "model_type": {
-            "$ref": "#/components/schemas/ModelType"
-          },
-          "served_model_name": {
-            "type": "string",
-            "example": "thenlper/gte-base"
-          },
-          "sha": {
-            "type": "string",
-            "example": "null",
-            "nullable": true
-          },
-          "tokenization_workers": {
-            "type": "integer",
-            "example": "4",
-            "minimum": 0
-          },
-          "version": {
-            "type": "string",
-            "description": "Router Info",
-            "example": "0.5.0"
+          "prompt_name" : {
+            "type" : "string",
+            "description" : "The name of the prompt that should be used by for encoding. If not set, no prompt\nwill be applied.\n\nMust be a key in the `sentence-transformers` configuration `prompts` dictionary.\n\nFor example if ``prompt_name`` is \"query\" and the ``prompts`` is {\"query\": \"query: \", ...},\nthen the sentence \"What is the capital of France?\" will be encoded as\n\"query: What is the capital of France?\" because the prompt text will be prepended before\nany text to encode",
+            "nullable" : true,
+            "example" : "null",
+            "default" : "null",
+            "x-ballerina-name" : "promptName"
           }
         }
       },
-      "Input": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/InputType"
-          },
-          {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/InputType"
-            }
-          }
-        ]
+      "RerankResponse" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Rank"
+        }
       },
-      "InputIds": {
-        "oneOf": [
-          {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 0
-            }
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "array",
-              "items": {
-                "type": "integer",
-                "format": "int32",
-                "minimum": 0
-              }
-            }
-          }
-        ]
+      "PredictResponseOneOf1" : {
+        "type" : "array",
+        "items" : {
+          "$ref" : "#/components/schemas/Prediction"
+        }
       },
-      "InputType": {
-        "oneOf": [
-          {
-            "type": "string"
+      "SimilarityRequest" : {
+        "required" : [ "inputs" ],
+        "type" : "object",
+        "properties" : {
+          "inputs" : {
+            "$ref" : "#/components/schemas/SimilarityInput"
           },
-          {
-            "type": "array",
-            "items": {
-              "type": "integer",
-              "format": "int32",
-              "minimum": 0
-            }
-          }
-        ]
-      },
-      "ModelType": {
-        "oneOf": [
-          {
-            "type": "object",
-            "required": [
-              "classifier"
-            ],
-            "properties": {
-              "classifier": {
-                "$ref": "#/components/schemas/ClassifierModel"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "embedding"
-            ],
-            "properties": {
-              "embedding": {
-                "$ref": "#/components/schemas/EmbeddingModel"
-              }
-            }
-          },
-          {
-            "type": "object",
-            "required": [
-              "reranker"
-            ],
-            "properties": {
-              "reranker": {
-                "$ref": "#/components/schemas/ClassifierModel"
-              }
-            }
-          }
-        ]
-      },
-      "OpenAICompatEmbedding": {
-        "type": "object",
-        "required": [
-          "object",
-          "embedding",
-          "index"
-        ],
-        "properties": {
-          "embedding": {
-            "$ref": "#/components/schemas/Embedding"
-          },
-          "index": {
-            "type": "integer",
-            "example": "0",
-            "minimum": 0
-          },
-          "object": {
-            "type": "string",
-            "example": "embedding"
+          "parameters" : {
+            "nullable" : true,
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/SimilarityParameters"
+            } ],
+            "default" : "null"
           }
         }
       },
-      "OpenAICompatErrorResponse": {
-        "type": "object",
-        "required": [
-          "message",
-          "code",
-          "error_type"
-        ],
-        "properties": {
-          "code": {
-            "type": "integer",
-            "format": "int32",
-            "minimum": 0
-          },
-          "error_type": {
-            "$ref": "#/components/schemas/ErrorType"
-          },
-          "message": {
-            "type": "string"
+      "EmbeddingOneOf1" : {
+        "type" : "array",
+        "items" : {
+          "type" : "number",
+          "format" : "float"
+        }
+      },
+      "EmbedResponse" : {
+        "type" : "array",
+        "example" : [ [ 0.0, 1.0, 2.0 ] ],
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "type" : "number",
+            "format" : "float"
           }
         }
       },
-      "OpenAICompatRequest": {
-        "type": "object",
-        "required": [
-          "input"
-        ],
-        "properties": {
-          "dimensions": {
-            "type": "integer",
-            "default": "null",
-            "example": "null",
-            "nullable": true,
-            "minimum": 0
-          },
-          "encoding_format": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/EncodingFormat"
-              }
-            ],
-            "default": "float"
-          },
-          "input": {
-            "$ref": "#/components/schemas/Input"
-          },
-          "model": {
-            "type": "string",
-            "example": "null",
-            "nullable": true
-          },
-          "user": {
-            "type": "string",
-            "example": "null",
-            "nullable": true
+      "EmbedSparseResponse" : {
+        "type" : "array",
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/components/schemas/SparseValue"
           }
         }
       },
-      "OpenAICompatResponse": {
-        "type": "object",
-        "required": [
-          "object",
-          "data",
-          "model",
-          "usage"
-        ],
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/OpenAICompatEmbedding"
+      "SimilarityParameters" : {
+        "type" : "object",
+        "properties" : {
+          "truncate" : {
+            "type" : "boolean",
+            "nullable" : true,
+            "example" : false,
+            "default" : false
+          },
+          "truncation_direction" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TruncationDirection"
+            } ],
+            "default" : "right",
+            "x-ballerina-name" : "truncationDirection"
+          },
+          "prompt_name" : {
+            "type" : "string",
+            "description" : "The name of the prompt that should be used by for encoding. If not set, no prompt\nwill be applied.\n\nMust be a key in the `sentence-transformers` configuration `prompts` dictionary.\n\nFor example if ``prompt_name`` is \"query\" and the ``prompts`` is {\"query\": \"query: \", ...},\nthen the sentence \"What is the capital of France?\" will be encoded as\n\"query: What is the capital of France?\" because the prompt text will be prepended before\nany text to encode",
+            "nullable" : true,
+            "example" : "null",
+            "default" : "null",
+            "x-ballerina-name" : "promptName"
+          }
+        }
+      },
+      "OpenAICompatRequest" : {
+        "required" : [ "input" ],
+        "type" : "object",
+        "properties" : {
+          "input" : {
+            "$ref" : "#/components/schemas/Input"
+          },
+          "encoding_format" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/EncodingFormat"
+            } ],
+            "default" : "float",
+            "x-ballerina-name" : "encodingFormat"
+          },
+          "model" : {
+            "type" : "string",
+            "nullable" : true,
+            "example" : "null"
+          },
+          "user" : {
+            "type" : "string",
+            "nullable" : true,
+            "example" : "null"
+          },
+          "dimensions" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "nullable" : true
+          }
+        }
+      },
+      "DecodeRequest" : {
+        "required" : [ "ids" ],
+        "type" : "object",
+        "properties" : {
+          "skip_special_tokens" : {
+            "type" : "boolean",
+            "example" : true,
+            "default" : true,
+            "x-ballerina-name" : "skipSpecialTokens"
+          },
+          "ids" : {
+            "$ref" : "#/components/schemas/InputIds"
+          }
+        }
+      },
+      "Rank" : {
+        "required" : [ "index", "score" ],
+        "type" : "object",
+        "properties" : {
+          "score" : {
+            "type" : "number",
+            "format" : "float",
+            "example" : 1.0
+          },
+          "index" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "example" : 0
+          },
+          "text" : {
+            "type" : "string",
+            "nullable" : true,
+            "example" : "Deep Learning is ...",
+            "default" : "null"
+          }
+        }
+      },
+      "Info" : {
+        "required" : [ "auto_truncate", "max_batch_tokens", "max_client_batch_size", "max_concurrent_requests", "max_input_length", "model_dtype", "model_id", "model_type", "served_model_name", "tokenization_workers", "version" ],
+        "type" : "object",
+        "properties" : {
+          "max_concurrent_requests" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "description" : "Router Parameters",
+            "example" : 128,
+            "x-ballerina-name" : "maxConcurrentRequests"
+          },
+          "max_client_batch_size" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "example" : 32,
+            "x-ballerina-name" : "maxClientBatchSize"
+          },
+          "model_type" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ModelType"
+            } ],
+            "x-ballerina-name" : "modelType"
+          },
+          "max_batch_requests" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "nullable" : true,
+            "x-ballerina-name" : "maxBatchRequests"
+          },
+          "model_id" : {
+            "type" : "string",
+            "description" : "Model info",
+            "example" : "thenlper/gte-base",
+            "x-ballerina-name" : "modelId"
+          },
+          "sha" : {
+            "type" : "string",
+            "nullable" : true,
+            "example" : "null"
+          },
+          "version" : {
+            "type" : "string",
+            "description" : "Router Info",
+            "example" : "0.5.0"
+          },
+          "auto_truncate" : {
+            "type" : "boolean",
+            "x-ballerina-name" : "autoTruncate"
+          },
+          "max_input_length" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "example" : 512,
+            "x-ballerina-name" : "maxInputLength"
+          },
+          "model_dtype" : {
+            "type" : "string",
+            "example" : "float16",
+            "x-ballerina-name" : "modelDtype"
+          },
+          "model_sha" : {
+            "type" : "string",
+            "nullable" : true,
+            "example" : "fca14538aa9956a46526bd1d0d11d69e19b5a101",
+            "x-ballerina-name" : "modelSha"
+          },
+          "tokenization_workers" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "example" : 4,
+            "x-ballerina-name" : "tokenizationWorkers"
+          },
+          "max_batch_tokens" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "example" : 2048,
+            "x-ballerina-name" : "maxBatchTokens"
+          },
+          "docker_label" : {
+            "type" : "string",
+            "nullable" : true,
+            "example" : "null",
+            "x-ballerina-name" : "dockerLabel"
+          },
+          "served_model_name" : {
+            "type" : "string",
+            "example" : "thenlper/gte-base",
+            "x-ballerina-name" : "servedModelName"
+          }
+        }
+      },
+      "SimilarityInput" : {
+        "required" : [ "sentences", "source_sentence" ],
+        "type" : "object",
+        "properties" : {
+          "sentences" : {
+            "type" : "array",
+            "description" : "A list of strings which will be compared against the source_sentence",
+            "example" : [ "What is Machine Learning?" ],
+            "items" : {
+              "type" : "string"
             }
           },
-          "model": {
-            "type": "string",
-            "example": "thenlper/gte-base"
-          },
-          "object": {
-            "type": "string",
-            "example": "list"
-          },
-          "usage": {
-            "$ref": "#/components/schemas/OpenAICompatUsage"
+          "source_sentence" : {
+            "type" : "string",
+            "description" : "The string that you wish to compare the other strings with. This can be a phrase, sentence,\nor longer passage, depending on the model being used",
+            "example" : "What is Deep Learning?",
+            "x-ballerina-name" : "sourceSentence"
           }
         }
       },
-      "OpenAICompatUsage": {
-        "type": "object",
-        "required": [
-          "prompt_tokens",
-          "total_tokens"
-        ],
-        "properties": {
-          "prompt_tokens": {
-            "type": "integer",
-            "example": "512",
-            "minimum": 0
+      "ErrorResponse" : {
+        "required" : [ "error", "error_type" ],
+        "type" : "object",
+        "properties" : {
+          "error_type" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ErrorType"
+            } ],
+            "x-ballerina-name" : "errorType"
           },
-          "total_tokens": {
-            "type": "integer",
-            "example": "512",
-            "minimum": 0
+          "error" : {
+            "type" : "string"
           }
         }
       },
-      "PredictInput": {
-        "oneOf": [
-          {
-            "type": "string",
-            "description": "A single string"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "A pair of strings",
-            "maxItems": 2,
-            "minItems": 2
-          },
-          {
-            "type": "array",
-            "items": {
-              "oneOf": [
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
-                  "description": "A single string",
-                  "maxItems": 1,
-                  "minItems": 1
-                },
-                {
-                  "type": "array",
-                  "items": {
-                    "type": "string"
-                  },
-                  "description": "A pair of strings",
-                  "maxItems": 2,
-                  "minItems": 2
-                }
-              ]
-            },
-            "description": "A batch"
-          }
-        ],
-        "description": "Model input. Can be either a single string, a pair of strings or a batch of mixed single and pairs of strings.",
-        "example": "What is Deep Learning?"
-      },
-      "PredictRequest": {
-        "type": "object",
-        "required": [
-          "inputs"
-        ],
-        "properties": {
-          "inputs": {
-            "$ref": "#/components/schemas/PredictInput"
-          },
-          "raw_scores": {
-            "type": "boolean",
-            "default": "false",
-            "example": "false"
-          },
-          "truncate": {
-            "type": "boolean",
-            "default": "false",
-            "example": "false",
-            "nullable": true
-          },
-          "truncation_direction": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TruncationDirection"
-              }
-            ],
-            "default": "right"
+      "ModelTypeModelTypeModelTypeOneOf123" : {
+        "required" : [ "reranker" ],
+        "type" : "object",
+        "properties" : {
+          "reranker" : {
+            "$ref" : "#/components/schemas/ClassifierModel"
           }
         }
       },
-      "PredictResponse": {
-        "oneOf": [
-          {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Prediction"
-            }
+      "OpenAICompatErrorResponse" : {
+        "required" : [ "code", "error_type", "message" ],
+        "type" : "object",
+        "properties" : {
+          "code" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "format" : "int32"
           },
-          {
-            "type": "array",
-            "items": {
-              "type": "array",
-              "items": {
-                "$ref": "#/components/schemas/Prediction"
-              }
-            }
-          }
-        ]
-      },
-      "Prediction": {
-        "type": "object",
-        "required": [
-          "score",
-          "label"
-        ],
-        "properties": {
-          "label": {
-            "type": "string",
-            "example": "admiration"
+          "error_type" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/ErrorType"
+            } ],
+            "x-ballerina-name" : "errorType"
           },
-          "score": {
-            "type": "number",
-            "format": "float",
-            "example": "0.5"
+          "message" : {
+            "type" : "string"
           }
         }
       },
-      "Rank": {
-        "type": "object",
-        "required": [
-          "index",
-          "score"
-        ],
-        "properties": {
-          "index": {
-            "type": "integer",
-            "example": "0",
-            "minimum": 0
+      "EmbedAllRequest" : {
+        "required" : [ "inputs" ],
+        "type" : "object",
+        "properties" : {
+          "truncate" : {
+            "type" : "boolean",
+            "nullable" : true,
+            "example" : false,
+            "default" : false
           },
-          "score": {
-            "type": "number",
-            "format": "float",
-            "example": "1.0"
+          "inputs" : {
+            "$ref" : "#/components/schemas/Input"
           },
-          "text": {
-            "type": "string",
-            "default": "null",
-            "example": "Deep Learning is ...",
-            "nullable": true
+          "truncation_direction" : {
+            "allOf" : [ {
+              "$ref" : "#/components/schemas/TruncationDirection"
+            } ],
+            "default" : "right",
+            "x-ballerina-name" : "truncationDirection"
+          },
+          "prompt_name" : {
+            "type" : "string",
+            "description" : "The name of the prompt that should be used by for encoding. If not set, no prompt\nwill be applied.\n\nMust be a key in the `sentence-transformers` configuration `prompts` dictionary.\n\nFor example if ``prompt_name`` is \"query\" and the ``prompts`` is {\"query\": \"query: \", ...},\nthen the sentence \"What is the capital of France?\" will be encoded as\n\"query: What is the capital of France?\" because the prompt text will be prepended before\nany text to encode",
+            "nullable" : true,
+            "example" : "null",
+            "default" : "null",
+            "x-ballerina-name" : "promptName"
           }
         }
       },
-      "RerankRequest": {
-        "type": "object",
-        "required": [
-          "query",
-          "texts"
-        ],
-        "properties": {
-          "query": {
-            "type": "string",
-            "example": "What is Deep Learning?"
-          },
-          "raw_scores": {
-            "type": "boolean",
-            "default": "false",
-            "example": "false"
-          },
-          "return_text": {
-            "type": "boolean",
-            "default": "false",
-            "example": "false"
-          },
-          "texts": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "example": [
-              "Deep Learning is ..."
-            ]
-          },
-          "truncate": {
-            "type": "boolean",
-            "default": "false",
-            "example": "false",
-            "nullable": true
-          },
-          "truncation_direction": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TruncationDirection"
-              }
-            ],
-            "default": "right"
+      "ModelTypeOneOf1" : {
+        "required" : [ "classifier" ],
+        "type" : "object",
+        "properties" : {
+          "classifier" : {
+            "$ref" : "#/components/schemas/ClassifierModel"
           }
         }
       },
-      "RerankResponse": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Rank"
-        }
+      "ModelType" : {
+        "oneOf" : [ {
+          "$ref" : "#/components/schemas/ModelTypeOneOf1"
+        }, {
+          "$ref" : "#/components/schemas/ModelTypeModelTypeOneOf12"
+        }, {
+          "$ref" : "#/components/schemas/ModelTypeModelTypeModelTypeOneOf123"
+        } ]
       },
-      "SimilarityInput": {
-        "type": "object",
-        "required": [
-          "source_sentence",
-          "sentences"
-        ],
-        "properties": {
-          "sentences": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "description": "A list of strings which will be compared against the source_sentence.",
-            "example": [
-              "What is Machine Learning?"
-            ]
-          },
-          "source_sentence": {
-            "type": "string",
-            "description": "The string that you wish to compare the other strings with. This can be a phrase, sentence,\nor longer passage, depending on the model being used.",
-            "example": "What is Deep Learning?"
+      "TokenizeInputOneOf1" : {
+        "type" : "string"
+      },
+      "PredictInputOneOf1" : {
+        "type" : "string",
+        "description" : "A single string"
+      },
+      "PredictResponsePredictResponseOneOf12" : {
+        "type" : "array",
+        "items" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/components/schemas/Prediction"
           }
         }
       },
-      "SimilarityParameters": {
-        "type": "object",
-        "properties": {
-          "prompt_name": {
-            "type": "string",
-            "description": "The name of the prompt that should be used by for encoding. If not set, no prompt\nwill be applied.\n\nMust be a key in the `sentence-transformers` configuration `prompts` dictionary.\n\nFor example if ``prompt_name`` is \"query\" and the ``prompts`` is {\"query\": \"query: \", ...},\nthen the sentence \"What is the capital of France?\" will be encoded as\n\"query: What is the capital of France?\" because the prompt text will be prepended before\nany text to encode.",
-            "default": "null",
-            "example": "null",
-            "nullable": true
+      "SimpleToken" : {
+        "required" : [ "id", "special", "text" ],
+        "type" : "object",
+        "properties" : {
+          "special" : {
+            "type" : "boolean",
+            "example" : false
           },
-          "truncate": {
-            "type": "boolean",
-            "default": "false",
-            "example": "false",
-            "nullable": true
+          "stop" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "nullable" : true,
+            "example" : 2
           },
-          "truncation_direction": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/TruncationDirection"
-              }
-            ],
-            "default": "right"
+          "start" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "nullable" : true,
+            "example" : 0
+          },
+          "id" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "format" : "int32",
+            "example" : 0
+          },
+          "text" : {
+            "type" : "string",
+            "example" : "test"
           }
         }
-      },
-      "SimilarityRequest": {
-        "type": "object",
-        "required": [
-          "inputs"
-        ],
-        "properties": {
-          "inputs": {
-            "$ref": "#/components/schemas/SimilarityInput"
-          },
-          "parameters": {
-            "allOf": [
-              {
-                "$ref": "#/components/schemas/SimilarityParameters"
-              }
-            ],
-            "default": "null",
-            "nullable": true
-          }
-        }
-      },
-      "SimilarityResponse": {
-        "type": "array",
-        "items": {
-          "type": "number",
-          "format": "float"
-        },
-        "example": [
-          0.0,
-          1.0,
-          0.5
-        ]
-      },
-      "SimpleToken": {
-        "type": "object",
-        "required": [
-          "id",
-          "text",
-          "special"
-        ],
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32",
-            "example": 0,
-            "minimum": 0
-          },
-          "special": {
-            "type": "boolean",
-            "example": "false"
-          },
-          "start": {
-            "type": "integer",
-            "example": 0,
-            "nullable": true,
-            "minimum": 0
-          },
-          "stop": {
-            "type": "integer",
-            "example": 2,
-            "nullable": true,
-            "minimum": 0
-          },
-          "text": {
-            "type": "string",
-            "example": "test"
-          }
-        }
-      },
-      "SparseValue": {
-        "type": "object",
-        "required": [
-          "index",
-          "value"
-        ],
-        "properties": {
-          "index": {
-            "type": "integer",
-            "minimum": 0
-          },
-          "value": {
-            "type": "number",
-            "format": "float"
-          }
-        }
-      },
-      "TokenizeInput": {
-        "oneOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        ]
-      },
-      "TokenizeRequest": {
-        "type": "object",
-        "required": [
-          "inputs"
-        ],
-        "properties": {
-          "add_special_tokens": {
-            "type": "boolean",
-            "default": "true",
-            "example": "true"
-          },
-          "inputs": {
-            "$ref": "#/components/schemas/TokenizeInput"
-          },
-          "prompt_name": {
-            "type": "string",
-            "description": "The name of the prompt that should be used by for encoding. If not set, no prompt\nwill be applied.\n\nMust be a key in the `sentence-transformers` configuration `prompts` dictionary.\n\nFor example if ``prompt_name`` is \"query\" and the ``prompts`` is {\"query\": \"query: \", ...},\nthen the sentence \"What is the capital of France?\" will be encoded as\n\"query: What is the capital of France?\" because the prompt text will be prepended before\nany text to encode.",
-            "default": "null",
-            "example": "null",
-            "nullable": true
-          }
-        }
-      },
-      "TokenizeResponse": {
-        "type": "array",
-        "items": {
-          "type": "array",
-          "items": {
-            "$ref": "#/components/schemas/SimpleToken"
-          }
-        },
-        "example": [
-          [
-            {
-              "id": 0,
-              "special": false,
-              "start": 0,
-              "stop": 2,
-              "text": "test"
-            }
-          ]
-        ]
-      },
-      "TruncationDirection": {
-        "type": "string",
-        "enum": [
-          "Left",
-          "Right"
-        ]
       }
     }
-  },
-  "tags": [
-    {
-      "name": "Text Embeddings Inference",
-      "description": "Hugging Face Text Embeddings Inference API"
-    }
-  ]
+  }
 }
