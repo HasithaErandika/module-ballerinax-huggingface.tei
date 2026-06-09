@@ -1,13 +1,27 @@
 [package]
-distribution = "{{BAL_VERSION}}"
-org = "ballerinax"
-name = "{{MODULE_NAME_CC}}"
-version = "{{MODULE_VERSION}}"
+distribution = "2201.13.1"
+org = "avi0ra"
+name = "huggingface.tei"
+version = "1.0.0"
 license = ["Apache-2.0"]
 authors = ["Ballerina"]
-keywords = []
-# icon = "icon.png" # TODO: update icon.png
-repository = "https://github.com/ballerina-platform/{{REPO_NAME}}"
+keywords = [
+    "AI/Embeddings",
+    "AI/Reranking",
+    "HuggingFace",
+    "TEI",
+    "Embeddings",
+    "Semantic Search",
+    "Vector Search",
+    "Reranking",
+    "RAG",
+    "BGE",
+    "Vendor/HuggingFace",
+    "Cost/Free"
+]
+
+icon = "icon.png"
+repository = "https://github.com/HasithaErandika/module-ballerinax-huggingface.tei"
 
 [build-options]
 observabilityIncluded = true
