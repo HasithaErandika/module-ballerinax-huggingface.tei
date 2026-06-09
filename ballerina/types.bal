@@ -39,6 +39,8 @@ public type PredictInputPredictInputPredictInputOneOf123 (string[]|string[])[];
 # Provides a set of configurations for controlling the behaviours when communicating with a remote HTTP endpoint.
 @display {label: "Connection Config"}
 public type ConnectionConfig record {|
+    # Configurations related to client authentication
+    http:BearerTokenConfig auth?;
     # The HTTP version understood by the client
     http:HttpVersion httpVersion = http:HTTP_2_0;
     # Configurations related to HTTP/1.x protocol
@@ -105,7 +107,7 @@ public type PredictRequest record {
     @jsondata:Name {value: "raw_scores"}
     boolean rawScores = false;
     @jsondata:Name {value: "truncation_direction"}
-    TruncationDirection truncationDirection = "right";
+    TruncationDirection truncationDirection = "Right";
 };
 
 public type InputType InputTypeOneOf1|InputTypeInputTypeOneOf12;
@@ -151,7 +153,7 @@ public type EmbedRequest record {
     Input inputs;
     boolean normalize = true;
     @jsondata:Name {value: "truncation_direction"}
-    TruncationDirection truncationDirection = "right";
+    TruncationDirection truncationDirection = "Right";
     # The number of dimensions that the output embeddings should have. If not set, the original
     # shape of the representation will be returned instead
     int? dimensions?;
@@ -172,7 +174,7 @@ public type EmbedSparseRequest record {
     boolean? truncate = false;
     Input inputs;
     @jsondata:Name {value: "truncation_direction"}
-    TruncationDirection truncationDirection = "right";
+    TruncationDirection truncationDirection = "Right";
     # The name of the prompt that should be used by for encoding. If not set, no prompt
     # will be applied.
     # 
@@ -202,7 +204,7 @@ public type RerankRequest record {
     @jsondata:Name {value: "raw_scores"}
     boolean rawScores = false;
     @jsondata:Name {value: "truncation_direction"}
-    TruncationDirection truncationDirection = "right";
+    TruncationDirection truncationDirection = "Right";
 };
 
 public type TokenizeRequest record {
@@ -228,7 +230,7 @@ public type PredictResponseOneOf1 Prediction[];
 
 public type SimilarityRequest record {
     SimilarityInput inputs;
-    SimilarityParameters? parameters = "null";
+    SimilarityParameters? parameters = ();
 };
 
 public type EmbeddingOneOf1 float[];
@@ -240,7 +242,7 @@ public type EmbedSparseResponse SparseValue[][];
 public type SimilarityParameters record {
     boolean? truncate = false;
     @jsondata:Name {value: "truncation_direction"}
-    TruncationDirection truncationDirection = "right";
+    TruncationDirection truncationDirection = "Right";
     # The name of the prompt that should be used by for encoding. If not set, no prompt
     # will be applied.
     # 
@@ -331,7 +333,7 @@ public type EmbedAllRequest record {
     boolean? truncate = false;
     Input inputs;
     @jsondata:Name {value: "truncation_direction"}
-    TruncationDirection truncationDirection = "right";
+    TruncationDirection truncationDirection = "Right";
     # The name of the prompt that should be used by for encoding. If not set, no prompt
     # will be applied.
     # 
