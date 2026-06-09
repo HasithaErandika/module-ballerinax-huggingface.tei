@@ -2,13 +2,15 @@
 
 The `ballerinax/huggingface.tei` connector provides practical examples illustrating usage in various scenarios.
 
-[//]: # (TODO: Add examples)
-1. 
-2. 
+1. [Semantic Search](./semantic-search) - Embed a query and rank a document corpus by cosine similarity.
+2. [Document Reranker](./document-reranker) - Cross-encoder reranking for second-stage RAG retrieval.
+3. [Text Classifier](./text-classifier) - Sentiment and intent classification of customer feedback.
 
 ## Prerequisites
 
-[//]: # (TODO: Add prerequisites)
+- Ballerina Swan Lake (Update 13 or later) installed.
+- A running HuggingFace Text Embeddings Inference (TEI) instance.
+- A `Config.toml` file in the example directory with the target `serviceUrl`.
 
 ## Running an example
 

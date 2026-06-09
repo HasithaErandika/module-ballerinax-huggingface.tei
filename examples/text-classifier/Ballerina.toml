@@ -1,0 +1,8 @@
+[package]
+org = "avi0ra"
+name = "text_classifier"
+version = "1.0.0"
+distribution = "2201.13.1"
+
+[dependencies]
+"avi0ra/huggingface.tei" = "=1.0.0"
