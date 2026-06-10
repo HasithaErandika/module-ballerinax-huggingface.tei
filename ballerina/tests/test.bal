@@ -133,7 +133,7 @@ service / on mockListener {
 
     // GET /health
     resource function get health(http:Caller caller, http:Request req) returns error? {
-        check caller->respond(http:STATUS_OK);
+        check caller->respond();
     }
 
     // GET /metrics
