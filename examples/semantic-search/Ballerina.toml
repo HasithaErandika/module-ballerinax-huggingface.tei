@@ -1,8 +1,8 @@
 [package]
-org = "avi0ra"
+org = "ballerinax"
 name = "semantic_search"
 version = "1.0.0"
 distribution = "2201.13.1"
 
 [dependencies]
-"avi0ra/huggingface.tei" = "=1.0.0"
+"ballerinax/huggingface.tei" = "=1.0.0"

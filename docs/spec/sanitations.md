@@ -1,6 +1,6 @@
-_Author_: @HasithaErandika \
+_Author_: @ballerina-platform \
 _Created_: 2026-06-10 \
-_Updated_: 2026-06-10 \
+_Updated_: 2026-06-12 \
 _Edition_: Swan Lake
 
 # Sanitation for OpenAPI specification
@@ -41,10 +41,19 @@ These changes are done in order to improve the overall usability, fix compilatio
      - `PredictResponse` is now a union of `SingleLabelPredictions|BatchLabelPredictions`.
 
 5. **Authentication Support**
-   - Added the `auth` field back to `ConnectionConfig` (which was omitted by the generator) to support Hugging Face Inference Endpoint authentication.
-   - Configured `client.bal`'s `init` function to pass `auth` down to the HTTP client's configurations.
+   - The OpenAPI generator omits the `auth` field from `ConnectionConfig`. It has been added manually as:
+     ```ballerina
+     http:BearerTokenConfig|http:OAuth2ClientCredentialsGrantConfig auth?;
+     ```
+     This is consistent with the pattern used across other `ballerinax` connectors and allows callers to pass a HuggingFace Bearer token when targeting authenticated Inference Endpoints.
+   - `client.bal`'s `init` function passes `config.auth` through to `http:ClientConfiguration.auth`.
 
-6. **Resource Documentation Update**
+6. **`init` Signature Convention Alignment**
+   - Flipped the `init` parameter order from `(string serviceUrl, ConnectionConfig config = {})` to
+     `(ConnectionConfig config, string serviceUrl = "https://api-inference.huggingface.co")`.
+   - This matches the established convention across other `ballerinax` connectors and gives callers a sensible default URL for the HuggingFace Inference API.
+
+7. **Resource Documentation Update**
    - Added 424 status code documentation to `embed_all` resource function in `client.bal`.
 
 ## OpenAPI CLI Command

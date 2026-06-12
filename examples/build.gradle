@@ -46,7 +46,7 @@ task testExamples {
 
 task buildExamples {
     gradle.taskGraph.whenReady { graph ->
-        if (graph.hasTask(":huggingface-examples:test")) {
+        if (graph.hasTask(":huggingface.tei-examples:test")) {
             buildExamples.enabled = false
         } else {
             testExamples.enabled = false

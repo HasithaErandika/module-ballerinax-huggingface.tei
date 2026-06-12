@@ -57,7 +57,7 @@ type SearchResult record {|
 |};
 
 public function main() returns error? {
-    tei:Client teiClient = check new (serviceUrl);
+    tei:Client teiClient = check new ({}, serviceUrl);
 
     io:println("=== HuggingFace TEI Semantic Search ===\n");
 

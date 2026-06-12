@@ -34,7 +34,7 @@ import ballerinax/huggingface.tei;
 configurable string serviceUrl = "http://localhost:8080";
 
 public function main() returns error? {
-    tei:Client teiClient = check new (serviceUrl);
+    tei:Client teiClient = check new ({}, serviceUrl);
 
     io:println("=== HuggingFace TEI Document Reranker ===\n");
 

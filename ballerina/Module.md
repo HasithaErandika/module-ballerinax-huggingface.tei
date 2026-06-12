@@ -1,10 +1,5 @@
 # Ballerina HuggingFace TEI Connector
 
-[![Build](https://github.com/HasithaErandika/module-ballerinax-huggingface.tei/actions/workflows/ci.yml/badge.svg)](https://github.com/HasithaErandika/module-ballerinax-huggingface.tei/actions/workflows/ci.yml)
-[![Trivy](https://github.com/HasithaErandika/module-ballerinax-huggingface.tei/actions/workflows/trivy-scan.yml/badge.svg)](https://github.com/HasithaErandika/module-ballerinax-huggingface.tei/actions/workflows/trivy-scan.yml)
-[![GitHub Last Commit](https://img.shields.io/github/last-commit/HasithaErandika/module-ballerinax-huggingface.tei.svg)](https://github.com/HasithaErandika/module-ballerinax-huggingface.tei/commits/main)
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-
 ## Overview
 
 [HuggingFace Text Embeddings Inference (TEI)](https://huggingface.co/docs/text-embeddings-inference) is a high-throughput, low-latency serving framework for text embedding models, rerankers, and sequence classifiers. It is the engine behind [HuggingFace Inference Endpoints](https://huggingface.co/inference-endpoints) and supports a wide range of popular open models including BGE, Nomic, Jina, GTE, E5, and cross-encoder rerankers.
@@ -98,12 +93,12 @@ import ballerinax/huggingface.tei;
 configurable string serviceUrl = ?;
 
 // Without authentication (local / open endpoint)
-tei:Client teiClient = check new (serviceUrl);
+tei:Client teiClient = check new ({}, serviceUrl);
 
 // With Bearer token authentication (HF Inference Endpoints)
-tei:Client teiClient = check new (serviceUrl, {
+tei:Client teiClient = check new ({
     auth: {token: "hf_xxxxxxxxxxxxxxxxxxxx"}
-});
+}, serviceUrl);
 ```
 
 ### 3. Generate embeddings
@@ -115,7 +110,7 @@ import ballerinax/huggingface.tei;
 configurable string serviceUrl = ?;
 
 public function main() returns error? {
-    tei:Client teiClient = check new (serviceUrl);
+    tei:Client teiClient = check new ({}, serviceUrl);
 
     tei:EmbedResponse embeddings = check teiClient->/embed.post({
         inputs: "Ballerina is a cloud-native programming language.",
@@ -158,13 +153,13 @@ if result is tei:Prediction[] {
 
 ## Examples
 
-The `huggingface.tei` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/HasithaErandika/module-ballerinax-huggingface.tei/tree/main/examples/), covering the following use cases:
+The `huggingface.tei` connector provides practical examples illustrating usage in various scenarios. Explore these [examples](https://github.com/ballerina-platform/module-ballerinax-huggingface.tei/tree/main/examples/), covering the following use cases:
 
 | Example | Description |
 |---|---|
-| [Semantic Search](https://github.com/HasithaErandika/module-ballerinax-huggingface.tei/tree/main/examples/semantic-search) | Embed a query and rank a document corpus by cosine similarity |
-| [Document Reranker](https://github.com/HasithaErandika/module-ballerinax-huggingface.tei/tree/main/examples/document-reranker) | Cross-encoder reranking for second-stage RAG retrieval |
-| [Text Classifier](https://github.com/HasithaErandika/module-ballerinax-huggingface.tei/tree/main/examples/text-classifier) | Sentiment and intent classification of customer feedback |
+| [Semantic Search](https://github.com/ballerina-platform/module-ballerinax-huggingface.tei/tree/main/examples/semantic-search) | Embed a query and rank a document corpus by cosine similarity |
+| [Document Reranker](https://github.com/ballerina-platform/module-ballerinax-huggingface.tei/tree/main/examples/document-reranker) | Cross-encoder reranking for second-stage RAG retrieval |
+| [Text Classifier](https://github.com/ballerina-platform/module-ballerinax-huggingface.tei/tree/main/examples/text-classifier) | Sentiment and intent classification of customer feedback |
 
 ## Contribute to Ballerina
 
