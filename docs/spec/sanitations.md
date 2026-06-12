@@ -50,7 +50,7 @@ These changes are done in order to improve the overall usability, fix compilatio
 
 6. **`init` Signature Convention Alignment**
    - Flipped the `init` parameter order from `(string serviceUrl, ConnectionConfig config = {})` to
-     `(ConnectionConfig config, string serviceUrl = "https://api-inference.huggingface.co")`.
+   `(ConnectionConfig config, string serviceUrl = "https://api-inference.huggingface.co")`.
    - This matches the established convention across other `ballerinax` connectors and gives callers a sensible default URL for the HuggingFace Inference API.
 
 7. **Resource Documentation Update**
